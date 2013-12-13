@@ -1,6 +1,6 @@
 'use strict';
 
-var products = [
+var hugs = [
   {
     id: 1,
     name: 'Guitar'
@@ -11,11 +11,11 @@ var products = [
   }
 ];
 
-function getProducts(request) {
-  request.reply(products);
+function getHugs(request) {
+  request.reply(hugs);
 }
 
 
 module.exports = [
-  { method: 'GET', path: '/products', config: { handler: getProducts } }
+  { method: 'GET', path: '/hugs', config: { handler: getHugs } }
 ];
