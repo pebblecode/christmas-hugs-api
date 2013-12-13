@@ -9,7 +9,7 @@ MongoClient.connect('mongodb://pebble:pebble@ds057568.mongolab.com:57568/heroku_
 
   if (err)  { throw err; }
 
-  var server = new Hapi.Server(+process.env.PORT, '0.0.0.0');
+  var server = new Hapi.Server(+process.env.PORT, '0.0.0.0', { cors: true });
 
   function getHugs(request) {
     db.collection('hugs', function (err, collection) {
