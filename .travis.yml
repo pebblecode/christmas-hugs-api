@@ -1,3 +1,9 @@
 language: node_js
 node_js:
-  - '0.10'
+- '0.10'
+deploy:
+  app: christmas-hugs-api
+  provider: heroku
+
+  api_key:
+    secure: FhC3K/DsN9+U5A5n3ZrKxnzySm0Ak7YtUg2Ss5zotfHagg3LPPMkF5Sazd04kqN3GFh41rkQi3Uddk57BCIpIUexz0PMIns/rF+XFPH25xfE8ZQbJNNA9kcxX7wMzLAOPmJ/1R4/l07prMDS3wXuwBElZ08Z3o0S9k1t/61tkHw=
