@@ -2,12 +2,13 @@
 
 var Hapi = require('hapi');
 var routes = require('./routes');
-var port = process.env.PORT || 8080;
+process.env.PORT = process.env.PORT || 8080;
   //Types = require('hapi').types;
 
 
 var config = { };
-var server = new Hapi.Server('0.0.0.0', port, config);
+
+var server = new Hapi.Server(+process.env.PORT, '0.0.0.0', config);
 
 server.addRoutes(routes);
 
