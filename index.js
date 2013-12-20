@@ -13,16 +13,35 @@ MongoClient.connect('mongodb://pebble:pebble@ds057568.mongolab.com:57568/heroku_
 
   function getHugs(request) {
     db.collection('hugs', function (err, collection) {
-      collection.find().toArray(function (err, items) {
+      collection.find({}, { limit: 10 }).toArray(function (err, items) {
         request.reply(items);
       });
     });
   }
 
+
   function createHug(request) {
     var hug = request.payload;
     db.collection('hugs', function (err, collection) {
       collection.insert(hug, function (err) {
+        if (err) { throw err; }
+        request.reply(201);
+      });
+    });
+  }
+
+  function getFaces(request) {
+    db.collection('faces', function (err, collection) {
+      collection.find({}, { limit: 10 }).toArray(function (err, items) {
+        request.reply(items);
+      });
+    });
+  }
+
+  function createFace(request) {
+    var face = request.payload;
+    db.collection('faces', function (err, collection) {
+      collection.insert(face, function (err) {
         if (err) { throw err; }
         request.reply(201);
       });
@@ -42,6 +61,23 @@ MongoClient.connect('mongodb://pebble:pebble@ds057568.mongolab.com:57568/heroku_
     path: '/hugs',
     config: {
       handler: createHug,
+      payload: 'parse'
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/faces',
+    config: {
+      handler: getFaces
+    }
+  });
+
+  server.route({
+    method: 'POST',
+    path: '/faces',
+    config: {
+      handler: createFace,
       payload: 'parse'
     }
   });
